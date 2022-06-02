@@ -53,19 +53,21 @@ document.addEventListener("DOMContentLoaded", function () {
                         //ajouter le contenu
                         opt.innerHTML += obj[key];
                     }
+                    //ajouter le contenu pour l'attribut name
                     if (key == "SUCCESS") {
-                        //console.log(obj[key]);
                         opt.setAttribute("name", obj[key])
                     }
                     //ajouter l'element dans la page
                     status.appendChild(opt);
                 }
             }
-            //
+            //événement au moment du changement de contenu
             status.addEventListener("change", function () {
                 let element = this;
+                //récuperer l'attribut name pour la balise en cours
                 let val = element.options[element.selectedIndex].getAttribute("name");
                 if (val != null) {
+                    //ajouter la value pour la div success
                     success.setAttribute("value", val);
                 }
             });
@@ -73,28 +75,25 @@ document.addEventListener("DOMContentLoaded", function () {
             //function pour la gérer la soumission du formulaire
             function handleSubmit(event) {
                 let output = document.querySelector(".output");
-
                 //vider la div
                 output.innerHTML = "";
                 //annuler l'action par défaut
                 event.preventDefault();
-
                 //créer un nouvel objet FormData
                 const data = new FormData(event.target);
                 //envoier un object js
                 const value = Object.fromEntries(data.entries());
-
                 //convertir la valeur js en chaîne JSON
                 output.innerHTML = JSON.stringify(value);
-
             }
 
             //récupérer la balise form
             const form = document.querySelector('form');
 
+            //créer la balise h1
             let h = document.createElement('h1');
             h.innerText = ("Test Efficy");
-            form.prepend(h)
+            form.prepend(h);
 
             //ajouter un eveniment 
             form.addEventListener('submit', handleSubmit);
