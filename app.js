@@ -43,22 +43,21 @@ document.addEventListener("DOMContentLoaded", function () {
             for (let i = 0; i < oppoStatus.length; i++) {
                 let obj = oppoStatus[i];
 
+                //créer la balise option
                 const opt = document.createElement('option');
                 for (const key in obj) {
                     //vérification si la clé du tableau est = à STATUS
                     if (key == "STATUS") {
-                        //console.log(obj[key]);
                         let t = obj[key].slice(0, 2).replace('.', ',');
-                        //créer la balise option
-
                         opt.value = t;
-                        //ajouter le contenu dans la page
+                        //ajouter le contenu
                         opt.innerHTML += obj[key];
                     }
                     if (key == "SUCCESS") {
                         //console.log(obj[key]);
                         opt.setAttribute("name", obj[key])
                     }
+                    //ajouter l'element dans la page
                     status.appendChild(opt);
                 }
             }
